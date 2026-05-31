@@ -107,7 +107,7 @@ const talks = [
 const tabs = [
   { id: "clases", label: "Clases preparatorias", icon: GraduationCap },
   { id: "repositorio", label: "Repositorio", icon: BookOpen },
-  { id: "charlas", label: "Charlas", icon: FileText }
+  { id: "charlas", label: "Material de las charlas", icon: FileText }
 ];
 
 function normalize(value) {
@@ -167,6 +167,7 @@ function parseCsv(text) {
         detalle: item.detalle || item.descripcion || item.description || "",
         tipo: item.tipo || item.categoria || "Repositorio",
         link: item.link || item.url || "#",
+        archivo: item.archivo || item.file || item.documento || "",
         qr: item.qr || "",
         responsable: item.responsable || item.autor || item.equipo || ""
       };
@@ -186,7 +187,7 @@ function Header() {
           />
           <div className="min-w-0">
             <p className="text-sm font-semibold uppercase tracking-wide text-judicial-sky">
-              Souvenir · Innova-Souvenir
+              Innova-Souvenir
             </p>
             <p className="max-w-[680px] text-sm font-medium text-white sm:text-base">
               Innovación y Gestión Judicial - Mar del Plata 2026
@@ -206,30 +207,24 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-judicial-ink text-white">
       <div className="network-field" aria-hidden="true" />
-      <div className="mx-auto grid min-h-[620px] w-full max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.02fr_.98fr] lg:py-20">
+      <div className="mx-auto grid min-h-[620px] w-full max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[.72fr_1.28fr] lg:py-20">
         <div className="relative z-10">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-judicial-sky/30 bg-judicial-sky/10 px-3 py-1 text-sm font-semibold text-judicial-sky">
             <Sparkles className="h-4 w-4" />
             Souvenir de las Primeras Jornadas
           </div>
-          <h1 className="max-w-3xl text-5xl font-black leading-none tracking-tight sm:text-7xl">
-            Jornadas de Innovación
-          </h1>
-          <p className="mt-4 max-w-2xl text-2xl font-semibold leading-tight text-white sm:text-3xl">
-            Innovación Tecnológica y Gestión
-          </p>
-          <p className="mt-6 max-w-2xl text-xl italic leading-relaxed text-white/90 sm:text-2xl">
-            La Justicia que viene: Innovación Tecnológica y Liderazgo Humano
-          </p>
-          <div className="mt-8 grid gap-3 text-lg font-black text-judicial-sky sm:inline-grid">
-            <span className="inline-flex items-center gap-3">
-              <CalendarDays className="h-6 w-6" />
-              4 y 5 de junio
-            </span>
-            <span className="inline-flex items-center gap-3">
-              <MapPin className="h-6 w-6" />
-              Mar del Plata
-            </span>
+          <div className="rounded-lg border border-white/10 bg-white/10 p-5 backdrop-blur">
+            <img
+              src="/assets/logo-cmfbsas.png"
+              alt=""
+              className="mb-5 h-20 w-20 rounded-md bg-white object-contain p-1"
+            />
+            <p className="text-sm font-semibold uppercase tracking-wide text-judicial-sky">
+              Comisión de Innovación y Gestión
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-judicial-mist">
+              Colegio de Magistrados y Funcionarios del Poder Judicial de la Provincia de Buenos Aires.
+            </p>
           </div>
         </div>
 
@@ -240,21 +235,6 @@ function Hero() {
               alt="Flyer Jornadas de Innovación"
               className="aspect-[1.18] w-full object-cover"
             />
-          </div>
-          <div className="mt-4 flex items-center gap-4 rounded-lg border border-white/10 bg-white/10 p-4 backdrop-blur">
-            <img
-              src="/assets/logo-cmfbsas.png"
-              alt=""
-              className="h-16 w-16 shrink-0 rounded-md bg-white object-contain p-1"
-            />
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-judicial-sky">
-                Comisión de Innovación y Gestión
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-judicial-mist">
-                Colegio de Magistrados y Funcionarios del Poder Judicial de la Provincia de Buenos Aires.
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -267,7 +247,7 @@ function TabButton({ active, icon: Icon, label, onClick }) {
     <button
       type="button"
       onClick={onClick}
-      className={`flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg border px-3 text-sm font-bold transition sm:flex-none sm:px-5 ${
+      className={`flex min-h-16 flex-1 items-center justify-center gap-3 rounded-lg border px-4 text-base font-black transition sm:flex-none sm:px-7 ${
         active
           ? "border-judicial-blue bg-judicial-blue text-white shadow-lg shadow-blue-900/20"
           : "border-judicial-line bg-white text-judicial-navy hover:border-judicial-sky hover:bg-judicial-mist"
@@ -365,14 +345,28 @@ function RepositoryTab() {
               <span className="text-xs font-bold uppercase text-slate-500">
                 Creado por {item.responsable || "equipo del evento"}
               </span>
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-1 rounded-lg bg-judicial-navy px-3 py-2 text-sm font-bold text-white transition hover:bg-judicial-blue"
-              >
-                Abrir <ExternalLink className="h-4 w-4" />
-              </a>
+              <div className="flex flex-wrap gap-2">
+                {item.link && item.link !== "#" && (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-1 rounded-lg bg-judicial-navy px-3 py-2 text-sm font-bold text-white transition hover:bg-judicial-blue"
+                  >
+                    {item.archivo ? "Ver App" : "Abrir"} <ExternalLink className="h-4 w-4" />
+                  </a>
+                )}
+                {item.archivo && (
+                  <a
+                    href={item.archivo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-1 rounded-lg border border-judicial-line bg-white px-3 py-2 text-sm font-bold text-judicial-navy transition hover:border-judicial-sky hover:bg-judicial-mist"
+                  >
+                    Archivo: <ExternalLink className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
             </div>
           </article>
         ))}
@@ -385,7 +379,7 @@ function TalksTab() {
   return (
     <div className="space-y-5">
       <div className="rounded-lg border border-judicial-sky/40 bg-white p-5">
-        <p className="text-sm font-black uppercase tracking-wide text-judicial-blue">Próximamente</p>
+        <p className="text-3xl font-black uppercase tracking-wide text-red-600 sm:text-4xl">Próximamente</p>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
           Las presentaciones y materiales de estas charlas se irán incorporando al repositorio digital.
         </p>

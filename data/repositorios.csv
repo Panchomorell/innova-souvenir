@@ -1,8 +1,12 @@
-titulo;detalle;tipo;link;qr;responsable
-Flyer conceptual;Comprender de manera clara los términos básicos.;Artefacto;https://drive.google.com/open?id=1thIuZwfGSROkrXTdkzRdxgDOytwE-mbV;;Sabrina Lamperti
-Herramientas judiciales IA;Calcula plazos procesales, caducidad de instancia, mora y regula honorarios. Es de Nación, pero contiene herramientas útiles para la práctica judicial.;Aplicacion;https://javiercuneo.github.io/Herramientas-Judiciales-IA/;;Javier Cuneo
-Conjunto de herramientas para sede civil;Calculadoras, equivalencias y anonimizador. Enlace al repositorio para acceder a los HTML.;Repositorio;https://github.com/jglazarte/web;;Guillermo Lazarte
-Homologapp;Aplicación HTML para homologar acuerdos de pago en apremios: calcula tasa, sobretasa y aportes, e incluye una calculadora para verificar si los aportes están cumplidos.;Aplicacion;https://homologapp.netlify.app/;;Juan Manuel Rilo
-Regulapp;Calculadora para regular honorarios.;Aplicacion;https://regulaapp.netlify.app/;;Juan Manuel Rilo
-Analizador de Fallos;Analiza sentencias judiciales y genera resumen de hechos, fundamentos jurídicos y cuestiones relevantes.;Aplicacion;https://chatgpt.com/g/g-6942d7970c3c8191a754f16b051ecc80-analizador-de-fallos-amfm;;Laboratorio IA - Asociación de Magistrados y Funcionarios de Morón
-Ejercicios con IA;Prácticas iniciáticas para judiciales - Clase preparatoria.;Artefacto;https://claude.ai/public/artifacts/b24cc1dc-724f-42a1-ab57-6965dec3a125;;Francisco Morell Otamendi
+titulo;detalle;tipo;link;archivo;qr;responsable
+Flyer conceptual;Comprender de manera clara los términos básicos.;Artefacto;https://drive.google.com/open?id=1thIuZwfGSROkrXTdkzRdxgDOytwE-mbV;;;Sabrina Lamperti
+Herramientas judiciales IA;Calcula plazos procesales, caducidad de instancia, mora y regula honorarios. Es de Nación, pero contiene herramientas útiles para la práctica judicial.;Aplicacion;https://javiercuneo.github.io/Herramientas-Judiciales-IA/;;;Javier Cuneo
+Conjunto de herramientas para sede civil;Calculadoras, equivalencias y anonimizador. Enlace al repositorio para acceder a los HTML.;Repositorio;https://github.com/jglazarte/web;;;Guillermo Lazarte
+Homologapp;Aplicación HTML para homologar acuerdos de pago en apremios: calcula tasa, sobretasa y aportes, e incluye una calculadora para verificar si los aportes están cumplidos.;Aplicacion;https://homologapp.netlify.app/;https://drive.google.com/open?id=17sM4fFcuISjeRRa5VUqQvkMT3OUlHxRB;;Juan Manuel Rilo
+Regulapp;Calculadora para regular honorarios.;Aplicacion;https://regulaapp.netlify.app/;https://drive.google.com/open?id=1i2jE3OCN-mRX7WFo5pPOOgcdJBO6ctLD;;Juan Manuel Rilo
+Analizador de Fallos;Analiza sentencias judiciales y genera resumen de hechos, fundamentos jurídicos y cuestiones relevantes.;Aplicacion;https://chatgpt.com/g/g-6942d7970c3c8191a754f16b051ecc80-analizador-de-fallos-amfm;;;Laboratorio IA - Asociación de Magistrados y Funcionarios de Morón
+Ejercicios con IA;Prácticas iniciáticas para judiciales - Clase preparatoria.;Artefacto;https://claude.ai/public/artifacts/b24cc1dc-724f-42a1-ab57-6965dec3a125;;;Francisco Morell Otamendi
+Anonimizador Judicial;Herramienta para anonimizar documentos judiciales.;Aplicacion;https://drive.google.com/file/d/1ZZ4g4CRLjYgNZD-E_Ifdl-R286AAQ3d1/view?usp=drivesdk;;;Gabriel Hernán Quadri
+Calculadora de honorarios Sucesiones;App para calcular honorarios en sucesiones.;Aplicacion;https://calculadora-honorarios-sucesiones.netlify.app/;https://drive.google.com/open?id=1i2jE3OCN-mRX7WFo5pPOOgcdJBO6ctLD;;M. Laura Monterubbianesi
+Realidad Virtual aplicadas al proceso civil;Video de audiencia con realidad virtual que coloca a los testigos en la escena de los hechos sobre los que van a declarar - Juzgado CyC n°23 de La Plata.;Video;https://drive.google.com/file/d/1Vnc8Diy3PMAJ9d6YTzWREoHvjcT2OMvk/view?usp=drive_link;;;Guillermina Di Lucca
+Sentencia Oral en determinación de capacidad;Video sobre una sentencia oral del Juzgado CyC n°23 en lenguaje claro y sencillo al justiciable, maximizando el rendimiento de MS-Teams como apoyo a la sentencia oral.;Video;;;;Guillermina Di Lucca
