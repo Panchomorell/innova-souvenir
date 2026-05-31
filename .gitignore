@@ -1,3 +1,4 @@
 node_modules/
 dist/
 .vite/
+tmp_drive_downloads/
