@@ -209,8 +209,8 @@ function Hero() {
       <div className="network-field" aria-hidden="true" />
       <div className="mx-auto grid min-h-[620px] w-full max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[.72fr_1.28fr] lg:py-20">
         <div className="relative z-10">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-judicial-sky/30 bg-judicial-sky/10 px-3 py-1 text-sm font-semibold text-judicial-sky">
-            <Sparkles className="h-4 w-4" />
+          <div className="mb-7 inline-flex max-w-sm items-center gap-3 rounded-lg border border-judicial-sky/40 bg-judicial-sky/15 px-6 py-5 text-2xl font-black leading-tight text-judicial-sky shadow-judicial sm:text-3xl">
+            <Sparkles className="h-8 w-8 shrink-0" />
             Souvenir de las Primeras Jornadas
           </div>
           <div className="rounded-lg border border-white/10 bg-white/10 p-5 backdrop-blur">
