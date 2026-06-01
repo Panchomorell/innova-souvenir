@@ -408,7 +408,7 @@ function ContentTabs() {
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         {tabs.map((tab) => (
           <TabButton
             key={tab.id}
@@ -418,6 +418,14 @@ function ContentTabs() {
             onClick={() => setActiveTab(tab.id)}
           />
         ))}
+        <a
+          href="https://d5d47d45-ac39-416c-bfe1-4835d95a23aa.usrfiles.com/ugd/3a5938_6ad6761b534f4d79829515a783fe0653.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className="flex min-h-16 flex-1 items-center justify-center rounded-lg border border-judicial-navy bg-judicial-navy px-4 text-base font-black text-white shadow-lg shadow-blue-950/20 transition hover:bg-judicial-blue sm:flex-none sm:px-8"
+        >
+          PROGRAMA
+        </a>
       </div>
 
       <div className="rounded-lg border border-judicial-line bg-slate-50 p-4 shadow-judicial sm:p-6">
@@ -439,9 +447,6 @@ function App() {
       </main>
       <footer className="border-t border-judicial-line bg-slate-50 px-4 py-8 text-center text-sm font-medium text-slate-500">
         <div className="mx-auto mb-7 max-w-xs">
-          <p className="mb-3 text-xs font-black uppercase tracking-wide text-slate-500">
-            Auspiciante
-          </p>
           <img
             src="/assets/la-ley-sponsor.svg"
             alt="La Ley Thomson Reuters"
