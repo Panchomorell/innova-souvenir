@@ -438,6 +438,16 @@ function App() {
         <ContentTabs />
       </main>
       <footer className="border-t border-judicial-line bg-slate-50 px-4 py-8 text-center text-sm font-medium text-slate-500">
+        <div className="mx-auto mb-7 max-w-xs">
+          <p className="mb-3 text-xs font-black uppercase tracking-wide text-slate-500">
+            Auspiciante
+          </p>
+          <img
+            src="/assets/la-ley-sponsor.svg"
+            alt="La Ley Thomson Reuters"
+            className="w-full rounded-md border border-judicial-line shadow-sm"
+          />
+        </div>
         Innova-Souvenir · Innovación y Gestión Judicial · Mar del Plata 2026
       </footer>
     </div>
