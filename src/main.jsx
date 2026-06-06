@@ -109,8 +109,7 @@ const talks = [
     speaker: "Francisco Morell Otamendi",
     title: "Tecno-ingeniería legal; diseño de necesidades y las herramientas agénticas",
     links: [
-      { label: "Presentación 1", url: "https://canva.link/t55pm2digfmmztc" },
-      { label: "Presentación 2", url: "https://www.canva.com/design/DAHK_O-nWgA/VpNuSoP09Ezor4J1-tzsMQ/edit" }
+      { label: "Presentación", url: "https://canva.link/t55pm2digfmmztc" }
     ]
   },
   {
@@ -487,7 +486,7 @@ function ContentTabs() {
           />
         ))}
         <a
-          href="https://innovalab.pjm.gob.ar/acciones"
+          href="https://innovalab.pjm.gob.ar/"
           target="_blank"
           rel="noreferrer"
           className="flex min-h-16 flex-1 items-center justify-center gap-2 rounded-lg border border-cyan-200 bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-300 px-4 text-base font-black text-white shadow-lg shadow-cyan-950/15 transition hover:brightness-105 sm:flex-none sm:px-6"
