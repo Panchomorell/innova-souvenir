@@ -55,7 +55,10 @@ const talks = [
   {
     speaker: "Nestor Antonio Trabucco",
     title: "Búsqueda de la eficiencia en la gestión de los procesos judiciales: trazabilidad y métricas",
-    links: [{ label: "Presentación", url: "https://drive.google.com/file/d/1ahzeOAYX9OH6tjofoJOGRdT_2zNVeaZx/view?usp=sharing" }]
+    links: [
+      { label: "Presentación Trabucco", url: "https://drive.google.com/file/d/1ahzeOAYX9OH6tjofoJOGRdT_2zNVeaZx/view?usp=sharing" },
+      { label: "Presentación Gabriel Gil", soon: true }
+    ]
   },
   {
     speaker: "Federico Alvarez Larrondo",
@@ -83,10 +86,10 @@ const talks = [
     links: [{ label: "Presentación", url: "https://docs.google.com/presentation/d/1fgGCBUC0T7_7dhxq3Kq59E3ipGbrQd86/edit?usp=sharing&ouid=113413225707369128631&rtpof=true&sd=true" }]
   },
   {
-    speaker: "Panel Infolab: Bruno Costanzo - Juan Gummy",
+    speaker: "Panel Infolab: Bruno Constanzo - Juan Gummy",
     title: "Mirada interdisciplinaria: IA y deepfakes - Uso de IA para la búsqueda de jurisprudencia",
     links: [
-      { label: "Presentación Costanzo", url: "https://drive.google.com/file/d/1odZiyNWt-TD4Z6sy8Z14gdXKqAJRR-uD/view?usp=drive_link" },
+      { label: "Presentación Constanzo", url: "https://drive.google.com/file/d/1odZiyNWt-TD4Z6sy8Z14gdXKqAJRR-uD/view?usp=drive_link" },
       { label: "Presentación Gumy", url: "https://drive.google.com/file/d/1gnLKZ8srF0i41YZY5jFcXrT_q1TP6WVV/view?usp=sharing" }
     ]
   },
@@ -124,6 +127,17 @@ const talks = [
     speaker: "Julio Conte-Grand",
     title: "La gestión como un proceso de innovación continua centrada en las personas",
     links: [{ label: "Presentación", url: "https://docs.google.com/presentation/d/1RZYTVTSl65upyDQi3gmv8KIQ8FVBFR3M/edit?usp=sharing&ouid=113413225707369128631&rtpof=true&sd=true" }]
+  },
+  {
+    speaker: "Panel Judiciales que Innovan",
+    title: "",
+    featured: true,
+    links: [
+      { label: "Innovaciones en la investigación - Sabrina Lamperti", url: "https://drive.google.com/file/d/1aHgEMwKxyRH8sFTOi2x2MEe5guyPeNHx/view?usp=drivesdk" },
+      { label: "Chatbot - Juzgado Civil y Comercial n° 14 MdP", soon: true },
+      { label: "Vínculos - María Laura Luccini", url: "https://vinculos.cloud/presentacion/" },
+      { label: "Presentación - Juan Manuel Rilo", soon: true }
+    ]
   }
 ];
 
@@ -422,22 +436,37 @@ function TalksTab() {
         {talks.map((item) => (
           <article
             key={`${item.speaker}-${item.title}`}
-            className="min-h-52 rounded-lg border border-judicial-line bg-white p-5 shadow-sm"
+            className={`min-h-52 rounded-lg border p-5 shadow-sm ${
+              item.featured
+                ? "border-cyan-200 bg-cyan-50 md:col-span-2 xl:col-span-3"
+                : "border-judicial-line bg-white"
+            }`}
           >
-            <p className="text-sm font-black uppercase tracking-wide text-judicial-blue">
-              {item.speaker}
-            </p>
-            <h3 className="mt-3 text-lg font-black leading-snug text-judicial-navy">
-              {item.title}
-            </h3>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className={item.featured ? "flex items-center gap-3" : ""}>
+              {item.featured && (
+                <img
+                  src="/assets/logo-cmfbsas.png"
+                  alt=""
+                  className="h-10 w-10 rounded-md bg-white object-contain p-1"
+                />
+              )}
+              <p className={`text-sm font-black uppercase tracking-wide ${item.featured ? "text-cyan-800" : "text-judicial-blue"}`}>
+                {item.speaker}
+              </p>
+            </div>
+            {item.title && (
+              <h3 className="mt-3 text-lg font-black leading-snug text-judicial-navy">
+                {item.title}
+              </h3>
+            )}
+            <div className={`mt-5 flex flex-wrap gap-2 ${item.featured ? "gap-3" : ""}`}>
               {item.links.map((link) =>
                 link.soon ? (
                   <button
                     key={`${item.speaker}-${link.label}`}
                     type="button"
                     onClick={() => setNotice("Próximamente")}
-                    className="inline-flex min-h-10 items-center justify-center rounded-lg border border-red-200 bg-red-50 px-3 text-sm font-black text-red-700 transition hover:bg-red-100"
+                    className={`${item.featured ? "min-h-12 px-4" : "min-h-10 px-3"} inline-flex items-center justify-center rounded-lg border border-red-200 bg-red-50 text-sm font-black text-red-700 transition hover:bg-red-100`}
                   >
                     {link.label}
                   </button>
@@ -447,7 +476,7 @@ function TalksTab() {
                     href={link.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex min-h-10 items-center justify-center rounded-lg bg-judicial-navy px-3 text-sm font-black text-white transition hover:bg-judicial-blue"
+                    className={`${item.featured ? "min-h-12 px-4" : "min-h-10 px-3"} inline-flex items-center justify-center rounded-lg bg-judicial-navy text-sm font-black text-white transition hover:bg-judicial-blue`}
                   >
                     {link.label}
                   </a>
@@ -489,10 +518,15 @@ function ContentTabs() {
           href="https://innovalab.pjm.gob.ar/"
           target="_blank"
           rel="noreferrer"
-          className="flex min-h-16 flex-1 items-center justify-center gap-2 rounded-lg border border-cyan-200 bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-300 px-4 text-base font-black text-white shadow-lg shadow-cyan-950/15 transition hover:brightness-105 sm:flex-none sm:px-6"
+          className="flex min-h-20 flex-1 flex-col items-center justify-center gap-1 rounded-lg border border-cyan-200 bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-300 px-5 text-base font-black text-white shadow-lg shadow-cyan-950/15 transition hover:brightness-105 sm:flex-none sm:px-7"
         >
-          <img src="/assets/innova-hub-logo.svg" alt="" className="h-9 w-11 object-contain" />
-          INNOVA-HUB
+          <span className="flex items-center gap-2">
+            <img src="/assets/innova-hub-logo.svg" alt="" className="h-10 w-12 object-contain" />
+            INNOVA-HUB
+          </span>
+          <span className="text-xs font-bold leading-tight text-white/90">
+            Repositorio JusLab. Compartí tu idea
+          </span>
         </a>
       </div>
 
@@ -514,13 +548,6 @@ function App() {
         <ContentTabs />
       </main>
       <footer className="border-t border-judicial-line bg-slate-50 px-4 py-8 text-center text-sm font-medium text-slate-500">
-        <div className="mx-auto mb-7 max-w-xs">
-          <img
-            src="/assets/la-ley-sponsor.svg"
-            alt="La Ley Thomson Reuters"
-            className="w-full rounded-md border border-judicial-line shadow-sm"
-          />
-        </div>
         Innova-Souvenir · Innovación y Gestión Judicial · Mar del Plata 2026
       </footer>
     </div>
