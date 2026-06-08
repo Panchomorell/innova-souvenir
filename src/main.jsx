@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
 import {
   BookOpen,
   CalendarDays,
@@ -43,6 +44,17 @@ const fallbackRepositories = [
 
 const talks = [
   {
+    speaker: "Panel Judiciales que Innovan",
+    title: "",
+    featured: true,
+    links: [
+      { label: "Innovaciones en la investigación - Sabrina Lamperti", url: "https://drive.google.com/file/d/1aHgEMwKxyRH8sFTOi2x2MEe5guyPeNHx/view?usp=drivesdk" },
+      { label: "Chatbot - Juzgado Civil y Comercial n° 14 MdP", soon: true },
+      { label: "Vínculos - María Laura Luccini", url: "https://vinculos.cloud/presentacion/" },
+      { label: "Presentación - Juan Manuel Rilo", soon: true }
+    ]
+  },
+  {
     speaker: "Sergio Torres",
     title: "Derecho y tecnología: las tensiones que desafían al poder judicial",
     links: [{ label: "Link", url: "https://www.scba.gov.ar/institucional/nota.asp?id=59247&veradjuntos=no" }]
@@ -57,7 +69,7 @@ const talks = [
     title: "Búsqueda de la eficiencia en la gestión de los procesos judiciales: trazabilidad y métricas",
     links: [
       { label: "Presentación Trabucco", url: "https://drive.google.com/file/d/1ahzeOAYX9OH6tjofoJOGRdT_2zNVeaZx/view?usp=sharing" },
-      { label: "Presentación Gabriel Gil", soon: true }
+      { label: "Presentación Gabriela Gil", soon: true }
     ]
   },
   {
@@ -127,17 +139,6 @@ const talks = [
     speaker: "Julio Conte-Grand",
     title: "La gestión como un proceso de innovación continua centrada en las personas",
     links: [{ label: "Presentación", url: "https://docs.google.com/presentation/d/1RZYTVTSl65upyDQi3gmv8KIQ8FVBFR3M/edit?usp=sharing&ouid=113413225707369128631&rtpof=true&sd=true" }]
-  },
-  {
-    speaker: "Panel Judiciales que Innovan",
-    title: "",
-    featured: true,
-    links: [
-      { label: "Innovaciones en la investigación - Sabrina Lamperti", url: "https://drive.google.com/file/d/1aHgEMwKxyRH8sFTOi2x2MEe5guyPeNHx/view?usp=drivesdk" },
-      { label: "Chatbot - Juzgado Civil y Comercial n° 14 MdP", soon: true },
-      { label: "Vínculos - María Laura Luccini", url: "https://vinculos.cloud/presentacion/" },
-      { label: "Presentación - Juan Manuel Rilo", soon: true }
-    ]
   }
 ];
 
@@ -550,6 +551,7 @@ function App() {
       <footer className="border-t border-judicial-line bg-slate-50 px-4 py-8 text-center text-sm font-medium text-slate-500">
         Innova-Souvenir · Innovación y Gestión Judicial · Mar del Plata 2026
       </footer>
+      <Analytics />
     </div>
   );
 }
