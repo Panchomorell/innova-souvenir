@@ -48,10 +48,10 @@ const talks = [
     title: "",
     featured: true,
     links: [
-      { label: "Innovaciones en la investigación - Sabrina Lamperti", url: "https://drive.google.com/file/d/1aHgEMwKxyRH8sFTOi2x2MEe5guyPeNHx/view?usp=drivesdk" },
-      { label: "Chatbot - Juzgado Civil y Comercial n° 14 MdP", soon: true },
-      { label: "Vínculos - María Laura Luccini", url: "https://vinculos.cloud/presentacion/" },
-      { label: "Presentación - Juan Manuel Rilo", soon: true }
+      { label: "Innovaciones en la Investigación - Sabrina Lamperti", url: "https://drive.google.com/file/d/1D9bRMWFBkL31Zn-NB9tTCXukGqvibJyB/view?usp=sharing" },
+      { label: "Chatbot Pilar - Patricio Groppo", url: "https://docs.google.com/presentation/d/145SFXUsFKbwuGVKkJjP5gcmjY_aILrxO/edit?usp=sharing&ouid=113413225707369128631&rtpof=true&sd=true" },
+      { label: "Jurisprudencia Viva - Juan Manuel Rilo", url: "https://docs.google.com/presentation/d/1CbvVVCTbfjLxVxFBJq-LLtUbW6ZOWXbB/edit?usp=sharing&ouid=113413225707369128631&rtpof=true&sd=true" },
+      { label: "Vínculos - María Laura Luccini", url: "https://vinculos.cloud/presentacion/" }
     ]
   },
   {
@@ -68,14 +68,14 @@ const talks = [
     speaker: "Nestor Antonio Trabucco",
     title: "Búsqueda de la eficiencia en la gestión de los procesos judiciales: trazabilidad y métricas",
     links: [
-      { label: "Presentación Trabucco", url: "https://drive.google.com/file/d/1ahzeOAYX9OH6tjofoJOGRdT_2zNVeaZx/view?usp=sharing" },
-      { label: "Presentación Gabriela Gil", soon: true }
+      { label: "Presentación", url: "https://drive.google.com/file/d/1NqMY3-cV1vMfz8_CwhWsoszpQB46vnRn/view?usp=sharing" },
+      { label: "Gabriela Gil", url: "https://drive.google.com/file/d/1ahzeOAYX9OH6tjofoJOGRdT_2zNVeaZx/view?usp=sharing" }
     ]
   },
   {
     speaker: "Federico Alvarez Larrondo",
     title: "Cavilaciones sobre el futuro de la Justicia a partir de la IA generativa Agentica",
-    links: [{ label: "Presentación", soon: true }]
+    links: [{ label: "Presentación", url: "https://drive.google.com/file/d/1lwEp67HGpcsfkS3bYwAhxV1KrseNldld/view?usp=sharing" }]
   },
   {
     speaker: "Guillermo Schor Landman",
@@ -91,6 +91,11 @@ const talks = [
     speaker: "Mario Adaro",
     title: "Inno ¿Vamos? La necesidad de un nuevo liderazgo judicial",
     links: [{ label: "Presentación", url: "https://www.canva.com/design/DAHLbTEzD9I/o9sZFeGc5t6Kt1WjMAJgCQ/edit" }]
+  },
+  {
+    speaker: "HUGO ÁLVAREZ SAEZ",
+    title: "Próximamente",
+    links: [{ label: "Próximamente", soon: true }]
   },
   {
     speaker: "Yazmin Belen Quiroga - Pablo Casas",
