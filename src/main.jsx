@@ -7,7 +7,6 @@ import {
   ExternalLink,
   FileText,
   Link2,
-  MapPin,
   PlayCircle,
   Scale,
   Search,
@@ -93,11 +92,6 @@ const talks = [
     links: [{ label: "Presentación", url: "https://www.canva.com/design/DAHLbTEzD9I/o9sZFeGc5t6Kt1WjMAJgCQ/edit" }]
   },
   {
-    speaker: "HUGO ÁLVAREZ SAEZ",
-    title: "Próximamente",
-    links: [{ label: "Próximamente", soon: true }]
-  },
-  {
     speaker: "Yazmin Belen Quiroga - Pablo Casas",
     title: "Inteligencia artificial e innovación judicial: la experiencia de AymurAI en el Juzgado Penal 10 de la Ciudad de Buenos Aires",
     links: [{ label: "Presentación", url: "https://docs.google.com/presentation/d/1fgGCBUC0T7_7dhxq3Kq59E3ipGbrQd86/edit?usp=sharing&ouid=113413225707369128631&rtpof=true&sd=true" }]
@@ -136,8 +130,7 @@ const talks = [
     speaker: "Taller Ing. Microsoft",
     title: "Agentes de IA con Microsoft Copilot para asistencia a la gestión judicial",
     links: [
-      { label: "Presentación 1", url: "https://docs.google.com/presentation/d/1L4DuFDqEsGPW-Q0cAA9MtAz-27vywWsm/edit?usp=sharing&ouid=113413225707369128631&rtpof=true&sd=true" },
-      { label: "Presentación Freire", soon: true }
+      { label: "Presentación 1", url: "https://docs.google.com/presentation/d/1L4DuFDqEsGPW-Q0cAA9MtAz-27vywWsm/edit?usp=sharing&ouid=113413225707369128631&rtpof=true&sd=true" }
     ]
   },
   {
@@ -148,9 +141,28 @@ const talks = [
 ];
 
 const tabs = [
-  { id: "clases", label: "Clases preparatorias", icon: Youtube },
   { id: "repositorio", label: "Repositorio", icon: BookOpen },
-  { id: "charlas", label: "Material de las charlas", icon: FileText }
+  { id: "clases", label: "Clases preparatorias", icon: Youtube },
+  { id: "charlas", label: "Materiales", icon: FileText }
+];
+
+const externalTabs = [
+  {
+    label: "Programa",
+    icon: CalendarDays,
+    href: "https://d5d47d45-ac39-416c-bfe1-4835d95a23aa.usrfiles.com/ugd/3a5938_6ad6761b534f4d79829515a783fe0653.pdf"
+  },
+  {
+    label: "Brochure de las Jornadas",
+    icon: FileText,
+    href: "https://drive.google.com/file/d/1yKJbFjXPUx9_ZWfbSZ8NVwpsMq1cTgT9/view?usp=sharing"
+  },
+  {
+    label: "Innova-Hub",
+    icon: Sparkles,
+    href: "https://innovalab.pjm.gob.ar/",
+    logo: "/assets/innova-hub-logo.svg"
+  }
 ];
 
 function normalize(value) {
@@ -252,29 +264,24 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-judicial-ink text-white">
       <div className="network-field" aria-hidden="true" />
-      <div className="mx-auto grid min-h-[620px] w-full max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[.72fr_1.28fr] lg:py-20">
-        <div className="relative z-10">
-          <div className="mb-7 inline-flex max-w-sm items-center gap-3 rounded-lg border border-judicial-sky/40 bg-judicial-sky/15 px-6 py-5 text-2xl font-black leading-tight text-judicial-sky shadow-judicial sm:text-3xl">
-            <Sparkles className="h-8 w-8 shrink-0" />
-            Souvenir de las Primeras Jornadas
+      <div className="mx-auto flex min-h-[540px] w-full max-w-5xl flex-col justify-center gap-4 px-4 py-10 sm:px-6 lg:py-14">
+        <div className="relative z-10 grid gap-4 md:grid-cols-2">
+          <div className="hero-ribbon">
+            <Sparkles className="h-6 w-6 shrink-0" />
+            <span>Souvenir de las Primeras Jornadas</span>
           </div>
-          <div className="rounded-lg border border-white/10 bg-white/10 p-5 backdrop-blur">
+          <div className="hero-ribbon hero-ribbon-soft">
             <img
               src="/assets/logo-cmfbsas.png"
-              alt=""
-              className="mb-5 h-20 w-20 rounded-md bg-white object-contain p-1"
+              alt="Colegio de Magistrados y Funcionarios PBA"
+              className="h-11 w-11 shrink-0 rounded-md bg-white object-contain p-1"
             />
-            <p className="text-sm font-semibold uppercase tracking-wide text-judicial-sky">
-              Comisión de Innovación y Gestión
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-judicial-mist">
-              Colegio de Magistrados y Funcionarios del Poder Judicial de la Provincia de Buenos Aires.
-            </p>
+            <span>Comisión de Innovación y Gestión</span>
           </div>
         </div>
 
         <div className="relative z-10">
-          <div className="overflow-hidden rounded-lg border border-white/10 bg-white/10 shadow-judicial backdrop-blur-lg">
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-white/10 shadow-judicial backdrop-blur-lg transition duration-500 hover:-translate-y-1 hover:border-judicial-sky/40 hover:shadow-[0_28px_80px_rgba(7,17,31,0.34)]">
             <img
               src="/assets/jornadas-mdq.png"
               alt="Flyer Jornadas de Innovación"
@@ -287,27 +294,44 @@ function Hero() {
   );
 }
 
-function TabButton({ active, icon: Icon, label, onClick, tone }) {
+function WindowTab({ active = false, href, icon: Icon, label, logo, onClick, tone = "neutral" }) {
   const toneClasses = {
-    clases: active
-      ? "border-red-300 bg-red-100 text-red-800 shadow-lg shadow-red-950/10"
-      : "border-red-100 bg-red-50 text-red-700 hover:border-red-200 hover:bg-red-100",
     repositorio: active
-      ? "border-slate-500 bg-slate-700 text-white shadow-lg shadow-slate-950/15"
-      : "border-slate-200 bg-slate-100 text-slate-700 hover:border-slate-300 hover:bg-slate-200",
+      ? "border-slate-500 bg-white text-judicial-navy"
+      : "border-slate-200 bg-slate-100 text-slate-700 hover:bg-white",
+    clases: active
+      ? "border-red-300 bg-white text-red-800"
+      : "border-red-100 bg-red-50 text-red-700 hover:bg-white",
     charlas: active
-      ? "border-cyan-400 bg-cyan-100 text-cyan-800 shadow-lg shadow-cyan-950/10"
-      : "border-cyan-100 bg-cyan-50 text-cyan-700 hover:border-cyan-200 hover:bg-cyan-100"
+      ? "border-cyan-300 bg-white text-cyan-800"
+      : "border-cyan-100 bg-cyan-50 text-cyan-700 hover:bg-white",
+    neutral: "border-judicial-line bg-white/80 text-judicial-navy hover:bg-white",
+    hub: "border-cyan-200 bg-gradient-to-r from-violet-100 via-cyan-50 to-emerald-50 text-judicial-navy hover:from-violet-50 hover:to-emerald-100"
   };
 
+  const className = `window-tab ${active ? "window-tab-active" : ""} ${toneClasses[tone]}`;
+  const contents = (
+    <>
+      {logo ? (
+        <img src={logo} alt="" className="h-8 w-9 shrink-0 object-contain" />
+      ) : (
+        <Icon className="h-4 w-4 shrink-0" />
+      )}
+      <span>{label}</span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noreferrer" className={className}>
+        {contents}
+      </a>
+    );
+  }
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`flex min-h-16 flex-1 items-center justify-center gap-3 rounded-lg border px-4 text-base font-black transition sm:flex-none sm:px-7 ${toneClasses[tone]}`}
-    >
-      <Icon className="h-4 w-4" />
-      {label}
+    <button type="button" onClick={onClick} className={className}>
+      {contents}
     </button>
   );
 }
@@ -321,7 +345,7 @@ function ClassTab() {
           href={item.url}
           target="_blank"
           rel="noreferrer"
-          className="group rounded-lg border border-judicial-line bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-judicial-sky hover:shadow-judicial"
+          className="interactive-card group rounded-lg border border-judicial-line bg-white p-5 shadow-sm"
         >
           <PlayCircle className="mb-8 h-11 w-11 text-judicial-blue transition group-hover:scale-105" />
           <h3 className="text-xl font-black text-judicial-navy">{item.name}</h3>
@@ -384,7 +408,7 @@ function RepositoryTab() {
         {visibleRepositories.map((item) => (
           <article
             key={`${item.titulo}-${item.link}`}
-            className="rounded-lg border border-judicial-line bg-white p-5 shadow-sm"
+            className="interactive-card rounded-lg border border-judicial-line bg-white p-5 shadow-sm"
           >
             <div className="mb-4 flex items-start justify-between gap-3">
               <span className="rounded-full bg-judicial-mist px-3 py-1 text-xs font-black uppercase text-judicial-blue">
@@ -404,7 +428,7 @@ function RepositoryTab() {
                     href={item.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-1 rounded-lg bg-judicial-navy px-3 py-2 text-sm font-bold text-white transition hover:bg-judicial-blue"
+                    className="interactive-link inline-flex items-center justify-center gap-1 rounded-lg bg-judicial-navy px-3 py-2 text-sm font-bold text-white"
                   >
                     {item.linkLabel || (item.archivo ? "Ver App" : "Abrir")} <ExternalLink className="h-4 w-4" />
                   </a>
@@ -414,7 +438,7 @@ function RepositoryTab() {
                     href={item.archivo}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-1 rounded-lg border border-judicial-line bg-white px-3 py-2 text-sm font-bold text-judicial-navy transition hover:border-judicial-sky hover:bg-judicial-mist"
+                    className="interactive-link inline-flex items-center justify-center gap-1 rounded-lg border border-judicial-line bg-white px-3 py-2 text-sm font-bold text-judicial-navy"
                   >
                     {item.archivoLabel || "Archivo:"} <ExternalLink className="h-4 w-4" />
                   </a>
@@ -429,20 +453,13 @@ function RepositoryTab() {
 }
 
 function TalksTab() {
-  const [notice, setNotice] = useState("");
-
   return (
-    <div className="space-y-5">
-      {notice && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm font-black uppercase tracking-wide text-red-700">
-          {notice}
-        </div>
-      )}
+    <div>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {talks.map((item) => (
           <article
             key={`${item.speaker}-${item.title}`}
-            className={`min-h-52 rounded-lg border p-5 shadow-sm ${
+            className={`interactive-card min-h-52 rounded-lg border p-5 shadow-sm ${
               item.featured
                 ? "border-cyan-200 bg-cyan-50 md:col-span-2 xl:col-span-3"
                 : "border-judicial-line bg-white"
@@ -466,28 +483,17 @@ function TalksTab() {
               </h3>
             )}
             <div className={`mt-5 flex flex-wrap gap-2 ${item.featured ? "gap-3" : ""}`}>
-              {item.links.map((link) =>
-                link.soon ? (
-                  <button
-                    key={`${item.speaker}-${link.label}`}
-                    type="button"
-                    onClick={() => setNotice("Próximamente")}
-                    className={`${item.featured ? "min-h-12 px-4" : "min-h-10 px-3"} inline-flex items-center justify-center rounded-lg border border-red-200 bg-red-50 text-sm font-black text-red-700 transition hover:bg-red-100`}
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <a
-                    key={`${item.speaker}-${link.label}`}
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`${item.featured ? "min-h-12 px-4" : "min-h-10 px-3"} inline-flex items-center justify-center rounded-lg bg-judicial-navy text-sm font-black text-white transition hover:bg-judicial-blue`}
-                  >
-                    {link.label}
-                  </a>
-                )
-              )}
+              {item.links.map((link) => (
+                <a
+                  key={`${item.speaker}-${link.label}`}
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${item.featured ? "min-h-12 px-4" : "min-h-10 px-3"} interactive-link inline-flex items-center justify-center rounded-lg bg-judicial-navy text-sm font-black text-white`}
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </article>
         ))}
@@ -497,21 +503,15 @@ function TalksTab() {
 }
 
 function ContentTabs() {
-  const [activeTab, setActiveTab] = useState("clases");
+  const [activeTab, setActiveTab] = useState("repositorio");
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        <a
-          href="https://d5d47d45-ac39-416c-bfe1-4835d95a23aa.usrfiles.com/ugd/3a5938_6ad6761b534f4d79829515a783fe0653.pdf"
-          target="_blank"
-          rel="noreferrer"
-          className="flex min-h-16 flex-1 items-center justify-center rounded-lg border border-judicial-navy bg-judicial-navy px-4 text-base font-black text-white shadow-lg shadow-blue-950/20 transition hover:bg-judicial-blue sm:flex-none sm:px-8"
-        >
-          PROGRAMA
-        </a>
+      <div className="window-tabs mb-0">
+        <WindowTab {...externalTabs[0]} />
+        <WindowTab {...externalTabs[1]} />
         {tabs.map((tab) => (
-          <TabButton
+          <WindowTab
             key={tab.id}
             active={activeTab === tab.id}
             icon={tab.icon}
@@ -520,23 +520,10 @@ function ContentTabs() {
             tone={tab.id}
           />
         ))}
-        <a
-          href="https://innovalab.pjm.gob.ar/"
-          target="_blank"
-          rel="noreferrer"
-          className="flex min-h-20 flex-1 flex-col items-center justify-center gap-1 rounded-lg border border-cyan-200 bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-300 px-5 text-base font-black text-white shadow-lg shadow-cyan-950/15 transition hover:brightness-105 sm:flex-none sm:px-7"
-        >
-          <span className="flex items-center gap-2">
-            <img src="/assets/innova-hub-logo.svg" alt="" className="h-10 w-12 object-contain" />
-            INNOVA-HUB
-          </span>
-          <span className="text-xs font-bold leading-tight text-white/90">
-            Repositorio JusLab. Compartí tu idea
-          </span>
-        </a>
+        <WindowTab {...externalTabs[2]} tone="hub" />
       </div>
 
-      <div className="rounded-lg border border-judicial-line bg-slate-50 p-4 shadow-judicial sm:p-6">
+      <div className="rounded-b-lg rounded-tr-lg border border-judicial-line bg-slate-50 p-4 shadow-judicial sm:p-6">
         {activeTab === "clases" && <ClassTab />}
         {activeTab === "repositorio" && <RepositoryTab />}
         {activeTab === "charlas" && <TalksTab />}

@@ -43,6 +43,7 @@
     clip-path: polygon(50% 0, 100% 0, 88% 100%, 22% 100%, 39% 57%);
     filter: drop-shadow(0 0 22px rgba(124, 200, 255, .32));
     opacity: .82;
+    animation: network-drift 12s ease-in-out infinite alternate;
   }
 
   .network-field::after {
@@ -54,5 +55,179 @@
       linear-gradient(90deg, rgba(124, 200, 255, .055) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: linear-gradient(90deg, transparent, black 18%, black 78%, transparent);
+    animation: grid-shift 18s linear infinite;
+  }
+
+  .hero-ribbon {
+    display: flex;
+    min-height: 72px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid rgba(124, 200, 255, .38);
+    border-radius: 8px;
+    background: rgba(124, 200, 255, .14);
+    padding: 14px 18px;
+    color: #7cc8ff;
+    font-size: 1.25rem;
+    font-weight: 900;
+    line-height: 1.12;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(5, 17, 32, 0.16);
+    backdrop-filter: blur(12px);
+    transition: transform .24s ease, border-color .24s ease, background .24s ease;
+  }
+
+  .hero-ribbon:hover {
+    transform: translateY(-2px);
+    border-color: rgba(124, 200, 255, .68);
+    background: rgba(124, 200, 255, .2);
+  }
+
+  .hero-ribbon-soft {
+    justify-content: flex-start;
+    color: #e8f3fb;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .window-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .window-tab {
+    position: relative;
+    display: inline-flex;
+    min-height: 56px;
+    flex: 1 1 170px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    padding: 12px 14px;
+    font-size: .9rem;
+    font-weight: 900;
+    line-height: 1.08;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: inset 0 -1px 0 rgba(216, 230, 241, .8);
+    transition:
+      transform .22s ease,
+      box-shadow .22s ease,
+      filter .22s ease,
+      background .22s ease,
+      border-color .22s ease;
+  }
+
+  .window-tab:hover {
+    z-index: 2;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(5, 17, 32, .12);
+    filter: saturate(1.05);
+  }
+
+  .window-tab-active {
+    z-index: 3;
+    min-height: 62px;
+    box-shadow: 0 -10px 28px rgba(5, 17, 32, .08);
+  }
+
+  .window-tab-active::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    background: #f8fafc;
+  }
+
+  .interactive-card {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform .24s ease,
+      border-color .24s ease,
+      box-shadow .24s ease,
+      background .24s ease;
+  }
+
+  .interactive-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(130deg, transparent 0 48%, rgba(124, 200, 255, .16) 50%, transparent 54% 100%);
+    opacity: 0;
+    transform: translateX(-28%);
+    transition: opacity .24s ease, transform .42s ease;
+  }
+
+  .interactive-card:hover {
+    transform: translateY(-4px);
+    border-color: #7cc8ff;
+    box-shadow: 0 20px 60px rgba(5, 17, 32, 0.16);
+  }
+
+  .interactive-card:hover::before {
+    opacity: 1;
+    transform: translateX(28%);
+  }
+
+  .interactive-link {
+    transition:
+      transform .2s ease,
+      background .2s ease,
+      border-color .2s ease,
+      box-shadow .2s ease,
+      color .2s ease;
+  }
+
+  .interactive-link:hover {
+    transform: translateY(-2px);
+    border-color: #7cc8ff;
+    background: #0b91e8;
+    color: #ffffff;
+    box-shadow: 0 12px 26px rgba(10, 31, 56, .18);
+  }
+
+  @media (max-width: 640px) {
+    .hero-ribbon {
+      min-height: 64px;
+      font-size: 1rem;
+    }
+
+    .window-tab {
+      min-height: 52px;
+      flex-basis: calc(50% - 6px);
+      font-size: .78rem;
+      padding: 10px 9px;
+    }
+  }
+
+  @keyframes network-drift {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+      transform: translate3d(-18px, 10px, 0) scale(1.02);
+    }
+  }
+
+  @keyframes grid-shift {
+    from {
+      background-position: 0 0, 0 0;
+    }
+
+    to {
+      background-position: 56px 56px, 56px 56px;
+    }
   }
 }
