@@ -146,17 +146,26 @@ const tabs = [
   { id: "charlas", label: "Materiales", icon: FileText }
 ];
 
-const externalTabs = [
+const documentTabs = [
   {
+    id: "programa",
     label: "Programa",
     icon: CalendarDays,
-    href: "https://d5d47d45-ac39-416c-bfe1-4835d95a23aa.usrfiles.com/ugd/3a5938_6ad6761b534f4d79829515a783fe0653.pdf"
+    title: "Programa",
+    href: "https://d5d47d45-ac39-416c-bfe1-4835d95a23aa.usrfiles.com/ugd/3a5938_6ad6761b534f4d79829515a783fe0653.pdf",
+    viewerSrc: "https://d5d47d45-ac39-416c-bfe1-4835d95a23aa.usrfiles.com/ugd/3a5938_6ad6761b534f4d79829515a783fe0653.pdf"
   },
   {
+    id: "brochure",
     label: "Brochure de las Jornadas",
     icon: FileText,
-    href: "https://drive.google.com/file/d/1yKJbFjXPUx9_ZWfbSZ8NVwpsMq1cTgT9/view?usp=sharing"
-  },
+    title: "Brochure de las Jornadas",
+    href: "https://drive.google.com/file/d/1yKJbFjXPUx9_ZWfbSZ8NVwpsMq1cTgT9/view?usp=sharing",
+    viewerSrc: "https://drive.google.com/file/d/1yKJbFjXPUx9_ZWfbSZ8NVwpsMq1cTgT9/preview"
+  }
+];
+
+const externalTabs = [
   {
     label: "Innova-Hub",
     icon: Sparkles,
@@ -502,14 +511,56 @@ function TalksTab() {
   );
 }
 
+function DocumentViewer({ document }) {
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-col gap-3 rounded-lg border border-judicial-line bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-sm font-black uppercase tracking-wide text-judicial-blue">
+            {document.title}
+          </p>
+          <p className="mt-1 text-sm font-medium text-slate-500">
+            Vista integrada en la página.
+          </p>
+        </div>
+        <a
+          href={document.href}
+          target="_blank"
+          rel="noreferrer"
+          className="interactive-link inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-judicial-navy px-4 text-sm font-black text-white"
+        >
+          Abrir externo <ExternalLink className="h-4 w-4" />
+        </a>
+      </div>
+      <div className="document-frame-wrap">
+        <iframe
+          src={document.viewerSrc}
+          title={document.title}
+          className="document-frame"
+          loading="lazy"
+          allow="fullscreen"
+        />
+      </div>
+    </div>
+  );
+}
+
 function ContentTabs() {
   const [activeTab, setActiveTab] = useState("repositorio");
+  const activeDocument = documentTabs.find((tab) => tab.id === activeTab);
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <div className="window-tabs mb-0">
-        <WindowTab {...externalTabs[0]} />
-        <WindowTab {...externalTabs[1]} />
+        {documentTabs.map((tab) => (
+          <WindowTab
+            key={tab.id}
+            active={activeTab === tab.id}
+            icon={tab.icon}
+            label={tab.label}
+            onClick={() => setActiveTab(tab.id)}
+          />
+        ))}
         {tabs.map((tab) => (
           <WindowTab
             key={tab.id}
@@ -520,10 +571,11 @@ function ContentTabs() {
             tone={tab.id}
           />
         ))}
-        <WindowTab {...externalTabs[2]} tone="hub" />
+        <WindowTab {...externalTabs[0]} tone="hub" />
       </div>
 
       <div className="rounded-b-lg rounded-tr-lg border border-judicial-line bg-slate-50 p-4 shadow-judicial sm:p-6">
+        {activeDocument && <DocumentViewer document={activeDocument} />}
         {activeTab === "clases" && <ClassTab />}
         {activeTab === "repositorio" && <RepositoryTab />}
         {activeTab === "charlas" && <TalksTab />}
