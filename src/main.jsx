@@ -162,6 +162,15 @@ const documentTabs = [
     title: "Brochure de las Jornadas",
     href: "https://drive.google.com/file/d/1yKJbFjXPUx9_ZWfbSZ8NVwpsMq1cTgT9/view?usp=sharing",
     viewerSrc: "https://drive.google.com/file/d/1yKJbFjXPUx9_ZWfbSZ8NVwpsMq1cTgT9/preview"
+  },
+  {
+    id: "memorias",
+    label: "Memorias-Conclusiones",
+    icon: Sparkles,
+    title: "Memorias-Conclusiones de las Jornadas",
+    href: "https://drive.google.com/file/d/1RIdp3fBQYydCD-TgMHr8wMaMdZBaDx8Z/view?usp=sharing",
+    viewerSrc: "https://drive.google.com/file/d/1RIdp3fBQYydCD-TgMHr8wMaMdZBaDx8Z/preview",
+    showInTabs: false
   }
 ];
 
@@ -269,7 +278,7 @@ function Header() {
   );
 }
 
-function Hero() {
+function Hero({ onOpenMemories }) {
   return (
     <section className="relative overflow-hidden bg-judicial-ink text-white">
       <div className="network-field" aria-hidden="true" />
@@ -296,6 +305,14 @@ function Hero() {
               alt="Flyer Jornadas de Innovación"
               className="aspect-[1.18] w-full object-cover"
             />
+            <button
+              type="button"
+              onClick={onOpenMemories}
+              className="hero-memory-button"
+            >
+              <Sparkles className="h-5 w-5 shrink-0" />
+              Memorias-Conclusiones de las Jornadas
+            </button>
           </div>
         </div>
       </div>
@@ -545,14 +562,13 @@ function DocumentViewer({ document }) {
   );
 }
 
-function ContentTabs() {
-  const [activeTab, setActiveTab] = useState("repositorio");
+function ContentTabs({ activeTab, setActiveTab }) {
   const activeDocument = documentTabs.find((tab) => tab.id === activeTab);
 
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+    <section id="contenido" className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <div className="window-tabs mb-0">
-        {documentTabs.map((tab) => (
+        {documentTabs.filter((tab) => tab.showInTabs !== false).map((tab) => (
           <WindowTab
             key={tab.id}
             active={activeTab === tab.id}
@@ -585,12 +601,21 @@ function ContentTabs() {
 }
 
 function App() {
+  const [activeTab, setActiveTab] = useState("repositorio");
+
+  function openMemories() {
+    setActiveTab("memorias");
+    window.requestAnimationFrame(() => {
+      document.getElementById("contenido")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   return (
     <div className="min-h-screen bg-white text-judicial-ink">
       <Header />
       <main>
-        <Hero />
-        <ContentTabs />
+        <Hero onOpenMemories={openMemories} />
+        <ContentTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       </main>
       <footer className="border-t border-judicial-line bg-slate-50 px-4 py-8 text-center text-sm font-medium text-slate-500">
         Innova-Souvenir · Innovación y Gestión Judicial · Mar del Plata 2026
