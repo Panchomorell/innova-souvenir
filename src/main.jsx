@@ -325,12 +325,12 @@ function WindowTab({ active = false, href, icon: Icon, label, logo, onClick, ton
     repositorio: active
       ? "border-slate-500 bg-white text-judicial-navy"
       : "border-slate-200 bg-slate-100 text-slate-700 hover:bg-white",
-    clases: active
-      ? "border-red-300 bg-white text-red-800"
-      : "border-red-100 bg-red-50 text-red-700 hover:bg-white",
     charlas: active
       ? "border-cyan-300 bg-white text-cyan-800"
       : "border-cyan-100 bg-cyan-50 text-cyan-700 hover:bg-white",
+    clases: active
+      ? "border-amber-300 bg-white text-amber-800"
+      : "border-amber-100 bg-amber-50 text-amber-700 hover:bg-white",
     neutral: "border-judicial-line bg-white/80 text-judicial-navy hover:bg-white",
     hub: "border-cyan-200 bg-gradient-to-r from-violet-100 via-cyan-50 to-emerald-50 text-judicial-navy hover:from-violet-50 hover:to-emerald-100"
   };

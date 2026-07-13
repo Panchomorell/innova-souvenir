@@ -102,9 +102,9 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border: 2px solid #fff7a6;
+    border: 2px solid #fef08a;
     border-radius: 8px;
-    background: linear-gradient(135deg, #fff200 0%, #ff9f1c 48%, #ff2d55 100%);
+    background: linear-gradient(135deg, #fef08a 0%, #22d3ee 52%, #0b91e8 100%);
     padding: 13px 18px;
     color: #07111f;
     font-size: 1rem;
@@ -113,8 +113,8 @@
     text-align: center;
     text-transform: uppercase;
     box-shadow:
-      0 16px 36px rgba(255, 45, 85, .34),
-      0 0 0 5px rgba(255, 242, 0, .18);
+      0 16px 36px rgba(11, 145, 232, .34),
+      0 0 0 5px rgba(254, 240, 138, .2);
     transition:
       transform .22s ease,
       box-shadow .22s ease,
@@ -126,8 +126,8 @@
     transform: translateY(-4px) scale(1.02);
     filter: saturate(1.16);
     box-shadow:
-      0 22px 44px rgba(255, 45, 85, .42),
-      0 0 0 8px rgba(255, 242, 0, .22);
+      0 22px 44px rgba(11, 145, 232, .44),
+      0 0 0 8px rgba(254, 240, 138, .24);
   }
 
   .window-tabs {
@@ -276,8 +276,8 @@
       padding: 10px 12px;
       font-size: .78rem;
       box-shadow:
-        0 12px 24px rgba(255, 45, 85, .32),
-        0 0 0 4px rgba(255, 242, 0, .18);
+        0 12px 24px rgba(11, 145, 232, .34),
+        0 0 0 4px rgba(254, 240, 138, .2);
     }
 
     .document-frame-wrap {
@@ -313,14 +313,14 @@
   @keyframes memory-pulse {
     0%, 100% {
       box-shadow:
-        0 16px 36px rgba(255, 45, 85, .34),
-        0 0 0 5px rgba(255, 242, 0, .18);
+        0 16px 36px rgba(11, 145, 232, .34),
+        0 0 0 5px rgba(254, 240, 138, .2);
     }
 
     50% {
       box-shadow:
-        0 20px 44px rgba(255, 45, 85, .46),
-        0 0 0 10px rgba(255, 242, 0, .1);
+        0 20px 44px rgba(11, 145, 232, .48),
+        0 0 0 10px rgba(254, 240, 138, .12);
     }
   }
 }
