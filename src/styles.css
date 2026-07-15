@@ -91,14 +91,18 @@
     text-align: left;
   }
 
+  .hero-memory-action {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(7, 17, 31, .88);
+    padding: 18px;
+  }
+
   .hero-memory-button {
-    position: absolute;
-    right: 18px;
-    top: 18px;
-    z-index: 2;
     display: inline-flex;
     min-height: 58px;
-    max-width: min(420px, calc(100% - 36px));
+    width: min(520px, 100%);
     align-items: center;
     justify-content: center;
     gap: 10px;

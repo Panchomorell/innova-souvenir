@@ -305,14 +305,16 @@ function Hero({ onOpenMemories }) {
               alt="Flyer Jornadas de Innovación"
               className="aspect-[1.18] w-full object-cover"
             />
-            <button
-              type="button"
-              onClick={onOpenMemories}
-              className="hero-memory-button"
-            >
-              <Sparkles className="h-5 w-5 shrink-0" />
-              Memorias-Conclusiones de las Jornadas
-            </button>
+            <div className="hero-memory-action">
+              <button
+                type="button"
+                onClick={onOpenMemories}
+                className="hero-memory-button"
+              >
+                <Sparkles className="h-5 w-5 shrink-0" />
+                Memorias-Conclusiones de las Jornadas
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -617,8 +619,15 @@ function App() {
         <Hero onOpenMemories={openMemories} />
         <ContentTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       </main>
-      <footer className="border-t border-judicial-line bg-slate-50 px-4 py-8 text-center text-sm font-medium text-slate-500">
-        Innova-Souvenir · Innovación y Gestión Judicial · Mar del Plata 2026
+      <footer className="border-t border-judicial-line bg-slate-50 px-4 py-8 text-center text-sm text-slate-500">
+        <div className="mx-auto max-w-5xl">
+          <p className="font-medium">
+            Innova-Souvenir · Innovación y Gestión Judicial · Mar del Plata 2026
+          </p>
+          <p className="mx-auto mt-4 max-w-4xl border-t border-slate-200 pt-4 text-xs leading-relaxed text-slate-500 sm:text-sm">
+            Las ideas y documentos de este repositorio son fruto del intercambio académico de las jornadas y no expresan la opinión institucional del Colegio de Magistrados y Funcionarios de la Provincia de Buenos Aires.
+          </p>
+        </div>
       </footer>
       <Analytics />
     </div>
